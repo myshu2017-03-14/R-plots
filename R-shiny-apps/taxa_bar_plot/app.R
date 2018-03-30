@@ -13,7 +13,7 @@ library(shiny)
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Gene cluster"),
+  titlePanel("Bar Plot"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
