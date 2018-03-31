@@ -31,4 +31,7 @@ The plot just as below:
 You can also see the taxa table:
 ![genecluster](/Images/bar_plot_shot2.png)
 
-And you can download the plot by Click the **Download plot** button. Save the plot as "name.pdf".
+And you can download the plot by Click the `Download plot` button. Save the plot as "name.pdf".
+
+
+
