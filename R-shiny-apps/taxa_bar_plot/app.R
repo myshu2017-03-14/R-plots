@@ -13,7 +13,7 @@ library(shiny)
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Gene cluster"),
+  titlePanel("Bar Plot"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
@@ -124,12 +124,20 @@ server <- function(input, output) {
       col=ncol(sum)
       sum=sum[order(sum[,col],decreasing = T),]
       sum<-sum[,-col]
-      # low to 21 is defined to "others"
-      others=colSums(sum[row:nrow,-1])
+      # if the first 20 include "Others", save to "Others_tmp" and remove the row
+      if("Others" %in% sum$taxonomy[1:20]){
+        # print("1")
+        other_tmp=sum[sum$taxonomy=="Others",]
+        sum <- sum[!(sum$taxonomy == "Others"),]
+      }
+      # low to 21 and is defined to "others"
+      others <-rbind(sum[row:(nrow-1),-1],as.numeric(other_tmp[,-1]))
+      others=colSums(others)
       # others=c("Others",others)
       data<-rbind(sum[1:max,-1],others)
       data<-data.frame(taxonomy=c(as.character(sum[1:max,1]),"Others"),data)
     }
+  
     
     # save the table
     # table<-rbind(as.character(colnames(data)[-1]),data[,-1])
@@ -217,8 +225,15 @@ server <- function(input, output) {
       col=ncol(sum)
       sum=sum[order(sum[,col],decreasing = T),]
       sum<-sum[,-col]
-      # low to 21 is defined to "others"
-      others=colSums(sum[row:nrow,-1])
+      # if the first 20 include "Others", save to "Others_tmp" and remove the row
+      if("Others" %in% sum$taxonomy[1:20]){
+        # print("1")
+        other_tmp=sum[sum$taxonomy=="Others",]
+        sum <- sum[!(sum$taxonomy == "Others"),]
+      }
+      # low to 21 and is defined to "others"
+      others <-rbind(sum[row:(nrow-1),-1],as.numeric(other_tmp[,-1]))
+      others=colSums(others)
       # others=c("Others",others)
       data<-rbind(sum[1:max,-1],others)
       data<-data.frame(taxonomy=c(as.character(sum[1:max,1]),"Others"),data)
