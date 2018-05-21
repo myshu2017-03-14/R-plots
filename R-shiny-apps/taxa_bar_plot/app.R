@@ -129,10 +129,14 @@ server <- function(input, output) {
         # print("1")
         other_tmp=sum[sum$taxonomy=="Others",]
         sum <- sum[!(sum$taxonomy == "Others"),]
+        # low to 21 and is defined to "others"
+        others <-rbind(sum[row:(nrow-1),-1],as.numeric(other_tmp[,-1]))
+        others=colSums(others)
+      }else{
+        # low to 21 and is defined to "others"
+        others <-sum[row:(nrow-1),-1]
+        others=colSums(others)
       }
-      # low to 21 and is defined to "others"
-      others <-rbind(sum[row:(nrow-1),-1],as.numeric(other_tmp[,-1]))
-      others=colSums(others)
       # others=c("Others",others)
       data<-rbind(sum[1:max,-1],others)
       data<-data.frame(taxonomy=c(as.character(sum[1:max,1]),"Others"),data)
@@ -230,10 +234,14 @@ server <- function(input, output) {
         # print("1")
         other_tmp=sum[sum$taxonomy=="Others",]
         sum <- sum[!(sum$taxonomy == "Others"),]
+        # low to 21 and is defined to "others"
+        others <-rbind(sum[row:(nrow-1),-1],as.numeric(other_tmp[,-1]))
+        others=colSums(others)
+      }else{
+        # low to 21 and is defined to "others"
+        others <-sum[row:(nrow-1),-1]
+        others=colSums(others)
       }
-      # low to 21 and is defined to "others"
-      others <-rbind(sum[row:(nrow-1),-1],as.numeric(other_tmp[,-1]))
-      others=colSums(others)
       # others=c("Others",others)
       data<-rbind(sum[1:max,-1],others)
       data<-data.frame(taxonomy=c(as.character(sum[1:max,1]),"Others"),data)
