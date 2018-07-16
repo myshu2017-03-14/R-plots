@@ -52,5 +52,19 @@ The input format just a tab file as below:
 The plot just as below:
 ![genecluster](/Images/flower_venn_plot_shot.png)
 
+# Example4 read length bar plot
+You should run in Rstudio. And you must install **shiny** and **ggplot2**.
+The code just as below:
+
+```{r}
+library(shiny)
+shiny::runGitHub('R-plots', 'myshu2017-03-14',subdir = "R-shiny-apps/read_len_bar_plot")
+```
+The input format just a tab file as below:
+![genecluster](/Images/read_len_table.png)
+
+The plot and table just as below:
+![genecluster](/Images/read_len_bar_plot1.png)
+![genecluster](/Images/read_len_bar_plot2.png)
 
 
