@@ -6,7 +6,8 @@
 #
 #    http://shiny.rstudio.com/
 #
-options(shiny.maxRequestSize=30*1024^2)
+# set max load file size 30M
+options(shiny.maxRequestSize=100*1024^2)
 library(shiny)
 
 # Define UI for application
